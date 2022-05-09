@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+
+	<insert id="insertJoinMember" parameterType="hashmap">
+	<![CDATA[
+	INSERT INTO 
+	MEMBER
+	(
+	MEM_ID, 
+	MEM_PASS, 
+	MEM_EMAIL, 
+	MEM_AUTH, 
+	MEM_NICK)
+	VALUES
+	(#{memId}, 
+	#{memPass}, 
+	#{memEmail}, 
+	'Y', 
+	#{memNick}
+	)
+]]>	
+	</insert>
+
+
+	<select id="checkId" parameterType="hashmap" resultType="int">
+		<![CDATA[
+		select count(*) from MEMBER where MEM_ID = #{memId}
+		]]>
+	</select>	
+	
+		<select id="checkId2" parameterType="hashmap" resultType="int">
+		<![CDATA[
+		select count(*) from MEMBER where MEM_ID = #{MEM_ID}
+		]]>
+	</select>	
+	
+	
+
+	<select id="passwordChk" parameterType="hashmap" resultType="String">
+		<![CDATA[
+		select MEM_PASS from MEMBER where MEM_PASS = #{MEM_PASS}
+		]]>
+	</select>
+
+	<select id="loginDO" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		select * from MEMBER
+		WHERE
+			MEM_ID = #{MEM_ID}
+	]]>	
+	</select>
+
+
+
+</mapper>
